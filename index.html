@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Felipe Maloneay — Marketing Digital &amp; Social Media</title>
 <meta name="description" content="Felipe Maloneay — Marketing Digital y Gestión de Redes Sociales. Portfolio interactivo.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23090a0d'/%3E%3Ctext x='50' y='68' font-family='Arial' font-size='48' font-weight='900' fill='%233e6fff' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23090a0d'/%3E%3Ctext x='50' y='68' font-family='Arial' font-size='48' font-weight='900' fill='%234573ff' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#08090b;
@@ -21,6 +21,8 @@
   --a:#4573ff;
   --ag:rgba(69,115,255,.14);
   --a2:#ff7a45;
+  --a2g:rgba(255,122,69,.14);
+  --green:#3ddc84;
   --maxw:1160px;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -35,29 +37,21 @@ ul{list-style:none;}
 button{font-family:inherit;background:none;border:none;color:inherit;cursor:pointer;}
 img{max-width:100%;display:block;}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(22px,5vw,56px);}
-.disp{font-family:'Space Grotesk',sans-serif;}
-.mono{font-family:'Space Mono',monospace;}
+.disp{font-family:'Bricolage Grotesque',sans-serif;}
+.mono{font-family:'JetBrains Mono',monospace;}
 
 html[data-lang="es"] [lang="en"]{display:none !important;}
 html[data-lang="en"] [lang="es"]{display:none !important;}
 
-/* ---------------- ambient background ---------------- */
-.bgfx{position:fixed;inset:-15%;z-index:-1;pointer-events:none;
-  background:
-    radial-gradient(circle at 18% 22%, rgba(69,115,255,.16), transparent 42%),
-    radial-gradient(circle at 85% 15%, rgba(255,122,69,.10), transparent 42%),
-    radial-gradient(circle at 25% 88%, rgba(255,122,69,.08), transparent 40%),
-    radial-gradient(circle at 82% 80%, rgba(69,115,255,.14), transparent 44%);
-  filter:blur(30px);
-  animation:drift 34s ease-in-out infinite alternate;
-}
-@keyframes drift{
-  0%{transform:translate(0,0) scale(1);}
-  50%{transform:translate(-3%,3%) scale(1.08);}
-  100%{transform:translate(3%,-2%) scale(1.12);}
-}
-.grain{position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.035;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+/* ---------------- floating particles ---------------- */
+#fx{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;}
+#fx span{position:absolute;bottom:-60px;font-family:'JetBrains Mono',monospace;color:var(--a);opacity:0;
+  animation:rise linear infinite;}
+@keyframes rise{
+  0%{transform:translateY(0) rotate(0deg);opacity:0;}
+  8%{opacity:.22;}
+  92%{opacity:.16;}
+  100%{transform:translateY(-115vh) rotate(18deg);opacity:0;}
 }
 #progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--a2),var(--a));z-index:9500;transition:width .1s;}
 
@@ -69,26 +63,35 @@ html[data-lang="en"] [lang="es"]{display:none !important;}
 #gate{position:fixed;inset:0;z-index:9000;background:var(--bg);display:flex;align-items:center;justify-content:center;overflow:hidden;
   transition:opacity .7s ease,visibility .7s ease;}
 #gate.hide{opacity:0;visibility:hidden;pointer-events:none;}
-.g-orb{position:absolute;border-radius:50%;pointer-events:none;animation:orbspin linear infinite;}
-.g-orb1{width:440px;height:440px;top:-160px;right:-160px;border:1.5px solid transparent;border-top-color:rgba(69,115,255,.55);border-right-color:rgba(69,115,255,.18);animation-duration:10s;}
-.g-orb2{width:320px;height:320px;bottom:-110px;left:-110px;border:1.5px solid transparent;border-bottom-color:rgba(255,122,69,.4);border-left-color:rgba(255,122,69,.12);animation-duration:8s;animation-direction:reverse;}
-.g-orb3{width:220px;height:220px;bottom:16%;right:8%;border:1px solid transparent;border-top-color:rgba(69,115,255,.3);animation-duration:13s;}
-@keyframes orbspin{to{transform:rotate(360deg);}}
-.g-glow{position:absolute;width:720px;height:720px;background:radial-gradient(circle,rgba(69,115,255,.09) 0%,transparent 70%);border-radius:50%;animation:glowpulse 5s ease-in-out infinite;}
-@keyframes glowpulse{0%,100%{opacity:.5;transform:scale(.85);}50%{opacity:1;transform:scale(1.1);}}
+.g-grid{position:absolute;inset:0;
+  background-image:radial-gradient(rgba(242,241,236,.08) 1px, transparent 1px);
+  background-size:34px 34px;
+  mask-image:radial-gradient(circle at 50% 42%, black 0%, transparent 68%);
+  animation:gridpulse 6s ease-in-out infinite;}
+@keyframes gridpulse{0%,100%{opacity:.6;}50%{opacity:1;}}
+.g-sweep{position:absolute;top:0;bottom:0;width:36%;
+  background:linear-gradient(100deg,transparent,rgba(69,115,255,.08),transparent);
+  animation:sweep 7s ease-in-out infinite;}
+@keyframes sweep{0%{left:-40%;}100%{left:104%;}}
 .gc{position:relative;z-index:2;text-align:center;padding:2rem;}
-.g-eye{font-size:.7rem;letter-spacing:.28em;color:var(--a);text-transform:uppercase;margin-bottom:2rem;opacity:0;animation:fu .6s ease forwards .2s;}
-.g-name{font-size:clamp(2.6rem,11vw,7rem);font-weight:700;letter-spacing:-.03em;line-height:.92;opacity:0;animation:fu .6s ease forwards .4s;}
+.g-eye{font-size:.7rem;letter-spacing:.28em;color:var(--a);text-transform:uppercase;margin-bottom:2rem;opacity:0;animation:fu .6s ease forwards .15s;}
+.g-name{font-size:clamp(2.6rem,11vw,7rem);font-weight:700;letter-spacing:-.03em;line-height:.92;}
+.g-name .ch{display:inline-block;opacity:0;filter:blur(6px);transform:scale(.7);animation:chin .6s cubic-bezier(.2,.9,.3,1) forwards;}
 .g-name em{color:var(--a);font-style:normal;}
-.g-sub{font-size:clamp(.85rem,1.8vw,1.05rem);font-weight:300;color:var(--mid);margin:.9rem 0 3rem;opacity:0;animation:fu .6s ease forwards .6s;}
-.g-ask{font-size:.85rem;color:var(--faint);margin-bottom:1.4rem;opacity:0;animation:fu .6s ease forwards .8s;}
-.g-btns{display:flex;gap:1.1rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:fu .6s ease forwards 1s;}
-.gb{position:relative;padding:1rem 3rem;border:1px solid rgba(69,115,255,.35);background:transparent;overflow:hidden;transition:border-color .3s;}
-.gfill{position:absolute;inset:0;background:var(--a);clip-path:inset(0 100% 0 0);transition:clip-path .5s cubic-bezier(.77,0,.175,1);}
-.gtxt{position:relative;z-index:1;font-size:.92rem;font-weight:600;letter-spacing:.1em;transition:color .3s;display:block;}
-.gb:hover{border-color:var(--a);}
-.gb:hover .gfill{clip-path:inset(0 0% 0 0);}
-.gb:hover .gtxt{color:#000;}
+@keyframes chin{to{opacity:1;filter:blur(0);transform:scale(1);}}
+.g-sub{font-size:clamp(.85rem,1.8vw,1.05rem);font-weight:300;color:var(--mid);margin:.9rem 0 3rem;opacity:0;animation:fu .6s ease forwards 1.05s;}
+.g-ask{font-size:.85rem;color:var(--faint);margin-bottom:1.4rem;opacity:0;animation:fu .6s ease forwards 1.2s;}
+.g-btns{display:flex;gap:1.1rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:fu .6s ease forwards 1.35s;}
+.gb{position:relative;padding:1rem 2.8rem;border-radius:100px;border:1px solid rgba(69,115,255,.35);background:transparent;overflow:hidden;
+  transition:border-color .3s,transform .3s;isolation:isolate;}
+.gb::before{content:'';position:absolute;inset:0;background:var(--a);border-radius:100px;transform:scaleX(0);transform-origin:center;
+  transition:transform .45s cubic-bezier(.65,0,.35,1);z-index:-1;}
+.gb:hover{border-color:var(--a);transform:translateY(-2px);}
+.gb:hover::before{transform:scaleX(1);}
+.gtxt{font-size:.92rem;font-weight:600;letter-spacing:.06em;transition:color .3s;display:block;}
+.gb:hover .gtxt{color:#04060f;}
+.g-ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.5);transform:scale(0);animation:rip .6s ease-out forwards;pointer-events:none;}
+@keyframes rip{to{transform:scale(1);opacity:0;}}
 @keyframes fu{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
 
 /* ---------------- app ---------------- */
@@ -98,13 +101,12 @@ html[data-lang="en"] [lang="es"]{display:none !important;}
 nav.top{position:fixed;top:0;left:0;right:0;z-index:400;height:64px;display:flex;align-items:center;
   background:rgba(8,9,11,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
 .nav-inner{max-width:var(--maxw);width:100%;margin:0 auto;padding:0 clamp(22px,5vw,56px);display:flex;align-items:center;justify-content:space-between;}
-.logo{font-family:'Space Grotesk';font-weight:700;font-size:1.1rem;}
+.logo{font-weight:700;font-size:1.1rem;}
 .logo em{color:var(--a);font-style:normal;}
-.nav-links{display:flex;gap:30px;align-items:center;}
-.nav-links a{font-size:.85rem;color:var(--mid);position:relative;padding:4px 0;transition:color .25s;}
-.nav-links a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--a);transition:width .25s ease;}
+.nav-links{display:flex;gap:6px;align-items:center;}
+.nav-links a{font-size:.84rem;color:var(--mid);position:relative;padding:8px 14px;border-radius:100px;transition:color .25s,background .25s;}
+.nav-links a.cur{color:var(--ink);background:var(--s2);}
 .nav-links a:hover{color:var(--ink);}
-.nav-links a:hover::after{width:100%;}
 .nav-right{display:flex;align-items:center;gap:16px;}
 .langbtn{font-size:.72rem;letter-spacing:.1em;color:var(--a);border:1px solid rgba(69,115,255,.3);padding:6px 13px;border-radius:100px;transition:background .2s;}
 .langbtn:hover{background:var(--ag);}
@@ -116,7 +118,7 @@ nav.top{position:fixed;top:0;left:0;right:0;z-index:400;height:64px;display:flex
   border-left:1px solid var(--line);transform:translateX(100%);transition:transform .4s cubic-bezier(.2,.8,.2,1);
   padding:100px 34px 40px;flex-direction:column;gap:26px;}
 .mobmenu.open{transform:translateX(0);}
-.mobmenu a{font-family:'Space Grotesk';font-size:1.25rem;}
+.mobmenu a{font-family:'Bricolage Grotesque';font-size:1.25rem;}
 .mobbackdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:399;opacity:0;transition:opacity .4s ease;pointer-events:none;}
 .mobbackdrop.open{opacity:1;pointer-events:auto;}
 @media (max-width:820px){
@@ -128,124 +130,154 @@ nav.top{position:fixed;top:0;left:0;right:0;z-index:400;height:64px;display:flex
 
 section{padding:130px 0 10px;position:relative;}
 section.alt{background:rgba(255,255,255,.015);}
-.sec-lbl{font-family:'Space Mono';font-size:.68rem;letter-spacing:.24em;color:var(--a);text-transform:uppercase;
-  margin-bottom:3rem;padding-bottom:.9rem;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;}
-h2.h-title{font-family:'Space Grotesk';font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:600;margin:-2.4rem 0 2.6rem;}
-.h-sub{color:var(--mid);font-size:1rem;max-width:520px;line-height:1.65;margin:-1.6rem 0 3rem;}
+.lbl{display:inline-flex;align-items:center;gap:10px;margin-bottom:2.6rem;}
+.lbl .badge{width:26px;height:26px;border-radius:8px;background:var(--ag);color:var(--a);display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono';font-size:.66rem;font-weight:700;flex-shrink:0;}
+.lbl .txt{font-family:'JetBrains Mono';font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);}
+h2.h-title{font-family:'Bricolage Grotesque';font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:700;margin:0 0 1.1rem;}
+.h-sub{color:var(--mid);font-size:1rem;max-width:520px;line-height:1.65;margin-bottom:3rem;}
 
 /* ---------------- hero ---------------- */
-#hero{min-height:100svh;display:flex;align-items:center;padding-top:100px;}
-.hero-grid{display:grid;grid-template-columns:.62fr 1.38fr;gap:60px;align-items:center;}
+#hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:100px;}
+#hero > .wrap{width:100%;}
+.hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:60px;align-items:center;}
 .hero-photo{position:relative;display:flex;align-items:center;justify-content:center;}
-.photo-wrap{position:relative;width:min(280px,70vw);height:min(280px,70vw);}
-.photo-ring{position:absolute;inset:-16px;animation:ringspin 11s linear infinite;}
-.photo-ring2{position:absolute;inset:-28px;animation:ringspin2 17s linear infinite;}
-@keyframes ringspin{to{transform:rotate(360deg);}}
-@keyframes ringspin2{to{transform:rotate(-360deg);}}
-.ring-bg{stroke:rgba(69,115,255,.1);stroke-width:1.5;fill:none;}
-.ring-arc{stroke:var(--a);stroke-width:2.5;fill:none;stroke-dasharray:110 620;stroke-linecap:round;}
-.ring-bg2{stroke:rgba(255,122,69,.08);stroke-width:1;fill:none;}
-.ring-arc2{stroke:var(--a2);stroke-width:1.5;fill:none;stroke-dasharray:60 700;stroke-linecap:round;}
-.photo-pic{position:relative;z-index:2;width:100%;height:100%;border-radius:50%;overflow:hidden;}
-.photo-pic img{width:100%;height:100%;object-fit:cover;filter:contrast(1.06) saturate(1.05) brightness(1.02);}
+.photo-frame{position:relative;width:min(280px,72vw);aspect-ratio:1/1.05;border-radius:26px;overflow:hidden;background:var(--s1);}
+.photo-frame img{width:100%;height:100%;object-fit:cover;filter:contrast(1.06) saturate(1.05) brightness(1.02);}
+.corner{position:absolute;width:26px;height:26px;border-color:var(--a);opacity:0;transition:opacity .5s ease .3s, transform .5s cubic-bezier(.2,.8,.2,1) .3s;}
+.rv.on .corner{opacity:1;}
+.c-tl{top:-1px;left:-1px;border-top:2px solid;border-left:2px solid;border-radius:10px 0 0 0;transform:translate(6px,6px);}
+.rv.on .c-tl{transform:translate(0,0);}
+.c-tr{top:-1px;right:-1px;border-top:2px solid;border-right:2px solid;border-radius:0 10px 0 0;transform:translate(-6px,6px);}
+.rv.on .c-tr{transform:translate(0,0);}
+.c-bl{bottom:-1px;left:-1px;border-bottom:2px solid;border-left:2px solid;border-radius:0 0 0 10px;transform:translate(6px,-6px);}
+.rv.on .c-bl{transform:translate(0,0);}
+.c-br{bottom:-1px;right:-1px;border-bottom:2px solid var(--a2);border-right:2px solid var(--a2);border-color:var(--a2);border-radius:0 0 10px 0;transform:translate(-6px,-6px);}
+.rv.on .c-br{transform:translate(0,0);}
+.status{position:absolute;bottom:14px;left:14px;z-index:3;display:flex;align-items:center;gap:8px;
+  background:rgba(8,9,11,.75);backdrop-filter:blur(6px);padding:7px 12px 7px 9px;border-radius:100px;border:1px solid var(--line);}
+.status-dot{width:7px;height:7px;border-radius:50%;background:var(--green);position:relative;}
+.status-dot::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1.5px solid var(--green);animation:pulse 2s ease-out infinite;}
+@keyframes pulse{0%{transform:scale(.6);opacity:1;}100%{transform:scale(1.8);opacity:0;}}
+.status-txt{font-family:'JetBrains Mono';font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);}
 
-.hero-loc{font-family:'Space Mono';font-size:.68rem;letter-spacing:.22em;color:var(--a);text-transform:uppercase;
+.hero-loc{font-family:'JetBrains Mono';font-size:.68rem;letter-spacing:.22em;color:var(--a);text-transform:uppercase;
   margin-bottom:1.6rem;display:flex;align-items:center;gap:.8rem;}
 .hero-loc::before{content:'';width:2rem;height:1px;background:var(--a);display:block;}
-.hero-role-sm{font-family:'Space Grotesk';font-size:clamp(1.1rem,2.2vw,1.5rem);font-weight:300;color:var(--mid);display:block;margin-bottom:.4rem;}
-.hero-name{font-family:'Space Grotesk';font-size:clamp(2.8rem,7vw,5.6rem);font-weight:700;letter-spacing:-.03em;line-height:.92;margin-bottom:1rem;}
-.hero-title{font-family:'Space Grotesk';font-size:clamp(1rem,1.9vw,1.3rem);font-weight:500;color:var(--a);margin-bottom:1.4rem;}
-.hero-quote{font-style:italic;font-size:clamp(.92rem,1.3vw,1.02rem);color:var(--mid);line-height:1.8;max-width:440px;
+.hero-role-sm{font-family:'Bricolage Grotesque';font-size:clamp(1.1rem,2.2vw,1.5rem);font-weight:300;color:var(--mid);display:block;margin-bottom:.4rem;}
+.hero-name{font-family:'Bricolage Grotesque';font-size:clamp(2.8rem,6.4vw,5.2rem);font-weight:700;letter-spacing:-.03em;line-height:.96;margin-bottom:1rem;}
+.hero-title{font-family:'Bricolage Grotesque';font-size:clamp(1rem,1.9vw,1.3rem);font-weight:500;color:var(--a);margin-bottom:1.4rem;}
+.hero-quote{font-style:italic;font-size:clamp(.92rem,1.3vw,1.02rem);color:var(--mid);line-height:1.8;max-width:480px;
   border-left:2px solid rgba(69,115,255,.35);padding-left:1.2rem;margin-bottom:2.2rem;}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:2.6rem;}
-.btn{position:relative;overflow:hidden;padding:.95rem 2.2rem;font-family:'Space Grotesk';font-weight:600;font-size:.88rem;
-  letter-spacing:.03em;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:9px;transition:transform .2s;}
-.btn:hover{transform:translateY(-2px);}
+.btn{position:relative;padding:.95rem 2.2rem;font-family:'Bricolage Grotesque';font-weight:600;font-size:.88rem;
+  letter-spacing:.02em;border-radius:100px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:9px;
+  will-change:transform;transition:background .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;}
 .btn-p{background:var(--a);color:#04060f;}
-.btn-g{background:transparent;color:var(--mid);border:1px solid var(--line);}
-.btnfill{position:absolute;inset:0;clip-path:inset(0 100% 0 0);transition:clip-path .45s cubic-bezier(.77,0,.175,1);pointer-events:none;}
-.btn-p .btnfill{background:#fff;}
-.btn-g .btnfill{background:var(--a);}
-.btn:hover .btnfill{clip-path:inset(0 0% 0 0);}
-.btn span{position:relative;z-index:1;transition:color .25s;display:inline-flex;align-items:center;gap:9px;}
-.btn:hover span{color:#04060f;}
-.btn svg{width:16px;height:16px;}
+.btn-p:hover{background:#638bff;box-shadow:0 10px 26px -10px rgba(69,115,255,.55);}
+.btn-g{background:transparent;color:var(--ink);border:1px solid var(--line);}
+.btn-g:hover{background:var(--s2);border-color:var(--faint);}
+.btn svg{width:16px;height:16px;transition:transform .25s ease;}
+.btn:hover svg{transform:translateX(2px);}
 .hero-stats{display:flex;gap:3rem;padding-top:1.8rem;border-top:1px solid var(--line);flex-wrap:wrap;}
-.hstat-n{font-family:'Space Grotesk';font-size:2.6rem;font-weight:700;line-height:1;display:flex;align-items:baseline;gap:.1rem;}
+.hstat-n{font-family:'Bricolage Grotesque';font-size:2.6rem;font-weight:700;line-height:1;display:flex;align-items:baseline;gap:.1rem;}
 .hstat-n em{color:var(--a);font-style:normal;font-size:1.7rem;}
-.hstat-l{font-family:'Space Mono';font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);margin-top:.5rem;}
+.hstat-l{font-family:'JetBrains Mono';font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);margin-top:.5rem;}
 @media (max-width:900px){
   .hero-grid{grid-template-columns:1fr;text-align:center;}
-  .hero-photo{order:-1;margin-bottom:10px;}
+  .hero-photo{order:-1;margin-bottom:14px;}
   .hero-loc{justify-content:center;}
   .hero-loc::before{display:none;}
   .hero-quote{margin-left:auto;margin-right:auto;text-align:left;}
   .hero-stats{justify-content:center;}
 }
 
+/* ---------------- hashtag marquee ---------------- */
+.tape{overflow:hidden;white-space:nowrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;margin-top:10px;}
+.tape-track{display:inline-flex;gap:14px;animation:tapemove 24s linear infinite;}
+.tape:hover .tape-track{animation-play-state:paused;}
+@keyframes tapemove{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.htag{font-family:'JetBrains Mono';font-size:.78rem;color:var(--mid);border:1px solid var(--line);padding:7px 14px;border-radius:100px;}
+.htag i{color:var(--a);font-style:normal;}
+
 /* ---------------- about ---------------- */
 .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;}
-.about-lead{font-family:'Space Grotesk';font-size:clamp(1.3rem,2.4vw,1.7rem);font-weight:500;line-height:1.5;}
+.about-lead{font-family:'Bricolage Grotesque';font-size:clamp(1.3rem,2.4vw,1.7rem);font-weight:500;line-height:1.5;}
 .about-lead em{color:var(--a);font-style:italic;font-family:'Inter';}
 .about-body p{color:var(--mid);font-size:1rem;line-height:1.85;margin-bottom:1.2rem;}
 .about-chips{margin-top:1.6rem;}
 .about-chip{display:flex;gap:16px;padding:1.1rem 0;border-top:1px solid var(--line);}
-.about-chip .n{font-family:'Space Mono';color:var(--a);font-size:.78rem;flex-shrink:0;width:24px;padding-top:2px;}
-.about-chip b{display:block;font-family:'Space Grotesk';font-size:.98rem;margin-bottom:2px;font-weight:600;}
+.about-chip .n{font-family:'JetBrains Mono';color:var(--a);font-size:.78rem;flex-shrink:0;width:24px;padding-top:2px;}
+.about-chip b{display:block;font-family:'Bricolage Grotesque';font-size:.98rem;margin-bottom:2px;font-weight:600;}
 .about-chip span{color:var(--mid);font-size:.86rem;}
 @media (max-width:860px){.about-grid{grid-template-columns:1fr;gap:30px;}}
 
-/* ---------------- skills ---------------- */
-.stack-row{display:grid;grid-template-columns:1fr 1fr;gap:0 4rem;}
-.stack-item{display:flex;align-items:center;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line);}
-.si-dot{width:7px;height:7px;border-radius:50%;background:var(--a);flex-shrink:0;}
-.si-name{font-family:'Space Grotesk';font-size:.98rem;font-weight:500;flex:1;}
-.si-role{font-family:'Space Mono';font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--a);}
-@media (max-width:700px){.stack-row{grid-template-columns:1fr;}}
+/* ---------------- skills (signal meter) ---------------- */
+.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 3rem;}
+.skill-row{display:flex;align-items:center;gap:16px;padding:1rem 0;border-bottom:1px solid var(--line);}
+.meter{display:flex;align-items:flex-end;gap:3px;height:18px;flex-shrink:0;}
+.meter i{display:block;width:4px;border-radius:2px;background:var(--line);transition:background .4s ease .1s, transform .4s cubic-bezier(.3,1.4,.4,1);
+  transform:scaleY(0);transform-origin:bottom;}
+.meter i:nth-child(1){height:6px;}
+.meter i:nth-child(2){height:10px;}
+.meter i:nth-child(3){height:14px;}
+.meter i:nth-child(4){height:18px;}
+.skill-row.on .meter i{transform:scaleY(1);}
+.skill-row.on .meter i.fill{background:var(--a);}
+.skill-name{font-family:'Bricolage Grotesque';font-size:.98rem;font-weight:500;flex:1;}
+.skill-lvl{font-family:'JetBrains Mono';font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--a);}
+@media (max-width:700px){.skill-grid{grid-template-columns:1fr;}}
 
 /* ---------------- toolkit ---------------- */
 .tag-grid{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:3rem;}
-.tag{font-family:'Space Grotesk';font-size:.85rem;font-weight:500;color:var(--mid);padding:.55rem 1.1rem;
-  background:var(--s2);border:1px solid var(--line);border-radius:100px;transition:color .2s,border-color .2s,transform .2s;
+.tag{font-family:'Bricolage Grotesque';font-size:.85rem;font-weight:500;color:var(--mid);padding:.55rem 1.1rem;
+  background:var(--s2);border:1px solid var(--line);border-radius:100px;transition:color .25s,border-color .25s,transform .25s;
   display:flex;align-items:center;gap:8px;}
-.tag:hover{color:var(--ink);border-color:var(--a);transform:translateY(-2px);}
-.tag svg{width:14px;height:14px;color:var(--a);}
-.brand-tag{background:transparent;border:1px solid var(--line);}
-.brand-tag:hover{border-color:var(--a2);}
+.tag:hover{color:var(--ink);border-color:var(--a);transform:translateY(-3px) rotate(-1deg);}
+.tag:hover svg{transform:rotate(-8deg) scale(1.1);}
+.tag svg{width:14px;height:14px;color:var(--a);transition:transform .3s ease;}
 
-/* ---------------- experience ---------------- */
-.co-block{padding:2.6rem 0 3rem;border-bottom:1px solid var(--line);}
-.co-block:last-child{border-bottom:none;}
-.co-name{font-family:'Space Grotesk';font-size:clamp(1.7rem,3.4vw,2.3rem);font-weight:700;letter-spacing:-.02em;margin-bottom:.3rem;}
-.co-meta{font-family:'Space Mono';font-size:.66rem;letter-spacing:.12em;color:var(--mid);text-transform:uppercase;margin-bottom:1.8rem;}
-.co-roles{display:grid;gap:1.4rem;}
-.co-role{background:var(--s1);border:1px solid var(--line);padding:1.5rem 1.7rem;transition:border-color .25s;}
-.co-role:hover{border-color:rgba(69,115,255,.35);}
-.co-rper{font-family:'Space Mono';font-size:.7rem;letter-spacing:.1em;color:var(--a);text-transform:uppercase;margin-bottom:.5rem;}
-.co-rtitle{font-family:'Space Grotesk';font-size:1.08rem;font-weight:600;margin-bottom:.7rem;}
-.co-rdesc{color:var(--mid);font-size:.92rem;line-height:1.75;}
-.co-rdesc strong{color:var(--ink);font-weight:600;}
+/* ---------------- experience accordion ---------------- */
+.acc{border-top:1px solid var(--line);}
+.acc-item{border-bottom:1px solid var(--line);}
+.acc-head{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:26px 0;cursor:pointer;}
+.acc-left{display:flex;align-items:baseline;gap:18px;}
+.acc-idx{font-family:'JetBrains Mono';font-size:.72rem;color:var(--faint);}
+.acc-role{font-family:'Bricolage Grotesque';font-size:1.15rem;font-weight:700;transition:color .3s;}
+.acc-item.open .acc-role{color:var(--a);}
+.acc-co{font-family:'JetBrains Mono';font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);margin-top:3px;}
+.acc-right{display:flex;align-items:center;gap:16px;flex-shrink:0;}
+.acc-date{font-family:'JetBrains Mono';font-size:.72rem;color:var(--mid);white-space:nowrap;}
+.acc-plus{width:28px;height:28px;border-radius:8px;border:1px solid var(--line);position:relative;flex-shrink:0;transition:transform .4s ease,border-color .3s,background .3s;}
+.acc-plus::before,.acc-plus::after{content:'';position:absolute;background:var(--ink);top:50%;left:50%;transform:translate(-50%,-50%);}
+.acc-plus::before{width:10px;height:1.4px;}
+.acc-plus::after{width:1.4px;height:10px;transition:opacity .3s;}
+.acc-item.open .acc-plus{transform:rotate(135deg);border-color:var(--a);background:var(--ag);}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.2,.8,.2,1);}
+.acc-body-in{padding:0 0 28px;max-width:680px;color:var(--mid);font-size:.95rem;line-height:1.75;}
+.acc-body-in strong{color:var(--ink);font-weight:600;}
+@media (max-width:640px){
+  .acc-head{flex-wrap:wrap;}
+  .acc-idx{display:none;}
+}
 
-/* ---------------- education ---------------- */
+/* ---------------- education + languages ---------------- */
 .edu-row{padding:1.6rem 0;border-bottom:1px solid var(--line);}
-.edu-top{display:flex;justify-content:space-between;gap:16px;margin-bottom:.4rem;flex-wrap:wrap;}
-.edu-school{font-family:'Space Grotesk';font-weight:700;font-size:1.1rem;}
-.edu-tag{font-family:'Space Mono';font-size:.62rem;color:var(--a);text-transform:uppercase;letter-spacing:.1em;padding-top:4px;}
+.edu-top{display:flex;justify-content:space-between;gap:16px;margin-bottom:.5rem;flex-wrap:wrap;}
+.edu-school{font-family:'Bricolage Grotesque';font-weight:700;font-size:1.1rem;}
+.edu-tag{font-family:'JetBrains Mono';font-size:.6rem;color:var(--a);background:var(--ag);text-transform:uppercase;letter-spacing:.08em;
+  padding:4px 9px;border-radius:100px;height:fit-content;}
 .edu-degree{color:var(--a2);font-size:.88rem;margin-bottom:.5rem;font-weight:500;}
 .edu-desc{color:var(--mid);font-size:.9rem;line-height:1.7;max-width:520px;}
 
 /* ---------------- contact ---------------- */
-#contact{min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:80px 0;}
-.ct-orb1{position:absolute;left:50%;top:50%;width:560px;height:560px;margin:-280px 0 0 -280px;
-  background:radial-gradient(circle,rgba(69,115,255,.2) 0%,rgba(69,115,255,.05) 45%,transparent 70%);border-radius:50%;
-  animation:ctb 5s ease-in-out infinite;pointer-events:none;}
-.ct-orb2{position:absolute;left:50%;top:50%;width:280px;height:280px;margin:-140px 0 0 -140px;
-  background:radial-gradient(circle,rgba(255,122,69,.25) 0%,transparent 70%);border-radius:50%;
-  animation:ctb 5s ease-in-out infinite .3s;pointer-events:none;}
-@keyframes ctb{0%,100%{transform:scale(.85);opacity:.55;}50%{transform:scale(1.1);opacity:1;}}
+#contact{min-height:88vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:80px 0;position:relative;}
+.spotlight{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(560px circle at var(--mx,50%) var(--my,40%), rgba(69,115,255,.14), transparent 60%);
+  transition:background .1s ease;}
 .ctwrap{position:relative;z-index:2;max-width:720px;padding:0 24px;}
-.ct-eye{font-family:'Space Mono';font-size:.7rem;letter-spacing:.26em;color:var(--a);text-transform:uppercase;margin-bottom:1.8rem;}
-.ct-title{font-family:'Space Grotesk';font-size:clamp(2.4rem,8vw,5.4rem);font-weight:700;letter-spacing:-.03em;line-height:.95;margin-bottom:1.6rem;}
+.ct-eye{font-family:'JetBrains Mono';font-size:.7rem;letter-spacing:.26em;color:var(--a);text-transform:uppercase;margin-bottom:1.8rem;}
+.ct-title{font-family:'Bricolage Grotesque';font-size:clamp(2.4rem,8vw,5.4rem);font-weight:700;letter-spacing:-.03em;line-height:.95;margin-bottom:1.6rem;}
 .ct-title em{color:var(--a);font-style:italic;font-family:'Inter';}
 .ct-sub{color:var(--mid);font-size:1rem;line-height:1.8;margin-bottom:2.6rem;max-width:520px;margin-left:auto;margin-right:auto;}
 .ct-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;}
@@ -253,12 +285,12 @@ h2.h-title{font-family:'Space Grotesk';font-size:clamp(1.9rem,3.6vw,2.6rem);font
 .ci-item{text-align:center;display:flex;flex-direction:column;align-items:center;gap:.4rem;}
 .ci-icon{color:var(--a);margin-bottom:.2rem;}
 .ci-icon svg{width:20px;height:20px;}
-.ci-lbl{font-family:'Space Mono';font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--a);}
-.ci-val{font-family:'Space Grotesk';font-size:1.02rem;font-weight:500;}
+.ci-lbl{font-family:'JetBrains Mono';font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--a);}
+.ci-val{font-family:'Bricolage Grotesque';font-size:1.02rem;font-weight:500;}
 .ci-val a:hover{color:var(--a);}
 
 footer{padding:44px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
-  color:var(--faint);font-size:.78rem;font-family:'Space Mono';}
+  color:var(--faint);font-size:.78rem;font-family:'JetBrains Mono';}
 footer b{color:var(--mid);}
 
 @media (max-width:640px){
@@ -269,22 +301,21 @@ footer b{color:var(--mid);}
 </head>
 <body>
 
-<div class="bgfx"></div>
-<div class="grain"></div>
+<div id="fx"></div>
 <div id="progress"></div>
 
 <!-- ============ GATE ============ -->
 <div id="gate">
-  <div class="g-orb g-orb1"></div><div class="g-orb g-orb2"></div><div class="g-orb g-orb3"></div>
-  <div class="g-glow"></div>
+  <div class="g-grid"></div>
+  <div class="g-sweep"></div>
   <div class="gc">
     <p class="g-eye mono">Portfolio · 2026</p>
-    <h1 class="g-name disp">Felipe<br><em>Maloneay</em></h1>
+    <h1 class="g-name disp" id="gateName"></h1>
     <p class="g-sub disp">Marketing Digital &amp; Social Media Management</p>
     <p class="g-ask">Elegí tu idioma / Choose your language</p>
     <div class="g-btns">
-      <button class="gb" data-lang="es"><div class="gfill"></div><span class="gtxt disp">Español</span></button>
-      <button class="gb" data-lang="en"><div class="gfill"></div><span class="gtxt disp">English</span></button>
+      <button class="gb" data-lang="es"><span class="gtxt disp">Español</span></button>
+      <button class="gb" data-lang="en"><span class="gtxt disp">English</span></button>
     </div>
   </div>
 </div>
@@ -294,13 +325,13 @@ footer b{color:var(--mid);}
 
   <nav class="top" id="siteNav">
     <div class="nav-inner">
-      <div class="logo">FM<em>.</em></div>
-      <div class="nav-links">
-        <a href="#about"><span lang="es">Sobre mí</span><span lang="en">About</span></a>
-        <a href="#skills"><span lang="es">Habilidades</span><span lang="en">Skills</span></a>
-        <a href="#experience"><span lang="es">Experiencia</span><span lang="en">Experience</span></a>
-        <a href="#education"><span lang="es">Educación</span><span lang="en">Education</span></a>
-        <a href="#contact"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
+      <div class="logo disp">FM<em>.</em></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#about" data-sec="about"><span lang="es">Sobre mí</span><span lang="en">About</span></a>
+        <a href="#skills" data-sec="skills"><span lang="es">Habilidades</span><span lang="en">Skills</span></a>
+        <a href="#experience" data-sec="experience"><span lang="es">Experiencia</span><span lang="en">Experience</span></a>
+        <a href="#education" data-sec="education"><span lang="es">Educación</span><span lang="en">Education</span></a>
+        <a href="#contact" data-sec="contact"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
       </div>
       <div class="nav-right">
         <button class="langbtn mono" id="langToggle">EN</button>
@@ -321,13 +352,6 @@ footer b{color:var(--mid);}
   <!-- ============ HERO ============ -->
   <section id="hero">
     <div class="wrap hero-grid">
-      <div class="hero-photo rv">
-        <div class="photo-wrap">
-          <svg class="photo-ring" viewBox="0 0 260 260"><circle cx="130" cy="130" r="124" class="ring-bg"/><circle cx="130" cy="130" r="124" class="ring-arc"/></svg>
-          <svg class="photo-ring2" viewBox="0 0 300 300"><circle cx="150" cy="150" r="144" class="ring-bg2"/><circle cx="150" cy="150" r="144" class="ring-arc2"/></svg>
-          <div class="photo-pic"><img id="heroPhoto" src="" alt="Felipe Maloneay"></div>
-        </div>
-      </div>
       <div>
         <div class="hero-loc mono rv">Buenos Aires, Argentina</div>
         <span class="hero-role-sm rv"><span lang="es">Hola, soy</span><span lang="en">Hi, I'm</span></span>
@@ -338,17 +362,38 @@ footer b{color:var(--mid);}
           <span lang="en">Strategist on paper, creative in execution.<br>Turning ideas into content that connects.</span>
         </p>
         <div class="hero-ctas rv">
-          <a class="btn btn-p" href="#" id="downloadBtnHero"><div class="btnfill"></div><span>
+          <a class="btn btn-p magnetic" href="#" id="downloadBtnHero">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
-            <span lang="es">Descargar CV</span><span lang="en">Download CV</span></span>
+            <span lang="es">Descargar CV</span><span lang="en">Download CV</span>
           </a>
-          <a class="btn btn-g" href="#contact"><div class="btnfill"></div><span><span lang="es">Contactar</span><span lang="en">Get in touch</span></span></a>
+          <a class="btn btn-g magnetic" href="#contact"><span lang="es">Contactar</span><span lang="en">Get in touch</span></a>
         </div>
         <div class="hero-stats rv">
           <div><div class="hstat-n"><em>+</em>4</div><div class="hstat-l"><span lang="es">Años exp.</span><span lang="en">Years exp.</span></div></div>
           <div><div class="hstat-n"><em>+</em>4</div><div class="hstat-l"><span lang="es">Marcas</span><span lang="en">Brands</span></div></div>
           <div><div class="hstat-n">C1</div><div class="hstat-l"><span lang="es">Inglés</span><span lang="en">English</span></div></div>
         </div>
+      </div>
+      <div class="hero-photo rv">
+        <div class="photo-frame">
+          <img id="heroPhoto" src="" alt="Felipe Maloneay">
+          <span class="corner c-tl"></span><span class="corner c-tr"></span><span class="corner c-bl"></span><span class="corner c-br"></span>
+          <div class="status"><span class="status-dot"></span><span class="status-txt"><span lang="es">Disponible</span><span lang="en">Available</span></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="tape">
+      <div class="tape-track">
+        <span class="htag"><i>#</i>SocialMediaManagement</span>
+        <span class="htag"><i>#</i>ContentStrategy</span>
+        <span class="htag"><i>#</i>BrandCommunication</span>
+        <span class="htag"><i>#</i>TrendAnalysis</span>
+        <span class="htag"><i>#</i>CommunityManagement</span>
+        <span class="htag"><i>#</i>SocialMediaManagement</span>
+        <span class="htag"><i>#</i>ContentStrategy</span>
+        <span class="htag"><i>#</i>BrandCommunication</span>
+        <span class="htag"><i>#</i>TrendAnalysis</span>
+        <span class="htag"><i>#</i>CommunityManagement</span>
       </div>
     </div>
   </section>
@@ -357,7 +402,7 @@ footer b{color:var(--mid);}
   <section id="about" class="alt">
     <div class="wrap about-grid">
       <div>
-        <p class="sec-lbl rv"><span lang="es">Sobre mí</span><span lang="en">About me</span></p>
+        <p class="lbl rv"><span class="badge">01</span><span class="txt"><span lang="es">Sobre mí</span><span lang="en">About me</span></span></p>
         <p class="about-lead rv">
           <span lang="es">No solo publico contenido: <em>pienso</em> la estrategia detrás de cada pieza.</span>
           <span lang="en">I don't just publish content: I <em>think</em> the strategy behind every piece.</span>
@@ -389,20 +434,20 @@ footer b{color:var(--mid);}
   <!-- ============ SKILLS ============ -->
   <section id="skills">
     <div class="wrap">
-      <p class="sec-lbl rv"><span lang="es">Fortalezas</span><span lang="en">Strengths</span></p>
+      <p class="lbl rv"><span class="badge">02</span><span class="txt"><span lang="es">Fortalezas</span><span lang="en">Strengths</span></span></p>
       <h2 class="h-title rv"><span lang="es">Habilidades</span><span lang="en">Skills</span></h2>
       <p class="h-sub rv"><span lang="es">Fortalezas clave para gestión de marca, contenido y comunicación con clientes.</span><span lang="en">Core strengths for brand management, content and client communication.</span></p>
-      <div class="stack-row">
-        <div class="stack-group">
-          <div class="stack-item rv"><div class="si-dot"></div><div class="si-name"><span lang="es">Gestión de redes sociales</span><span lang="en">Social Media Management</span></div><div class="si-role mono"><span lang="es">Experto</span><span lang="en">Expert</span></div></div>
-          <div class="stack-item rv"><div class="si-dot"></div><div class="si-name"><span lang="es">Atención al cliente</span><span lang="en">Customer Service</span></div><div class="si-role mono"><span lang="es">Experto</span><span lang="en">Expert</span></div></div>
-          <div class="stack-item rv"><div class="si-dot"></div><div class="si-name"><span lang="es">Trabajo en equipo</span><span lang="en">Teamwork</span></div><div class="si-role mono"><span lang="es">Experto</span><span lang="en">Expert</span></div></div>
-          <div class="stack-item rv"><div class="si-dot"></div><div class="si-name"><span lang="es">Desarrollo de ideas</span><span lang="en">Idea Development</span></div><div class="si-role mono"><span lang="es">Hábil</span><span lang="en">Skilled</span></div></div>
+      <div class="skill-grid">
+        <div class="skill-group">
+          <div class="skill-row rv" data-lvl="4"><div class="meter"><i></i><i></i><i></i><i></i></div><div class="skill-name"><span lang="es">Gestión de redes sociales</span><span lang="en">Social Media Management</span></div><div class="skill-lvl"><span lang="es">Experto</span><span lang="en">Expert</span></div></div>
+          <div class="skill-row rv" data-lvl="4"><div class="meter"><i></i><i></i><i></i><i></i></div><div class="skill-name"><span lang="es">Atención al cliente</span><span lang="en">Customer Service</span></div><div class="skill-lvl"><span lang="es">Experto</span><span lang="en">Expert</span></div></div>
+          <div class="skill-row rv" data-lvl="4"><div class="meter"><i></i><i></i><i></i><i></i></div><div class="skill-name"><span lang="es">Trabajo en equipo</span><span lang="en">Teamwork</span></div><div class="skill-lvl"><span lang="es">Experto</span><span lang="en">Expert</span></div></div>
+          <div class="skill-row rv" data-lvl="2"><div class="meter"><i></i><i></i><i></i><i></i></div><div class="skill-name"><span lang="es">Desarrollo de ideas</span><span lang="en">Idea Development</span></div><div class="skill-lvl"><span lang="es">Hábil</span><span lang="en">Skilled</span></div></div>
         </div>
-        <div class="stack-group">
-          <div class="stack-item rv"><div class="si-dot"></div><div class="si-name"><span lang="es">Pensamiento creativo</span><span lang="en">Creative Thinking</span></div><div class="si-role mono"><span lang="es">Avanzado</span><span lang="en">Advanced</span></div></div>
-          <div class="stack-item rv"><div class="si-dot"></div><div class="si-name"><span lang="es">Análisis de tendencias</span><span lang="en">Trend Analysis</span></div><div class="si-role mono"><span lang="es">Avanzado</span><span lang="en">Advanced</span></div></div>
-          <div class="stack-item rv"><div class="si-dot"></div><div class="si-name"><span lang="es">Proactividad</span><span lang="en">Proactivity</span></div><div class="si-role mono"><span lang="es">Avanzado</span><span lang="en">Advanced</span></div></div>
+        <div class="skill-group">
+          <div class="skill-row rv" data-lvl="3"><div class="meter"><i></i><i></i><i></i><i></i></div><div class="skill-name"><span lang="es">Pensamiento creativo</span><span lang="en">Creative Thinking</span></div><div class="skill-lvl"><span lang="es">Avanzado</span><span lang="en">Advanced</span></div></div>
+          <div class="skill-row rv" data-lvl="3"><div class="meter"><i></i><i></i><i></i><i></i></div><div class="skill-name"><span lang="es">Análisis de tendencias</span><span lang="en">Trend Analysis</span></div><div class="skill-lvl"><span lang="es">Avanzado</span><span lang="en">Advanced</span></div></div>
+          <div class="skill-row rv" data-lvl="3"><div class="meter"><i></i><i></i><i></i><i></i></div><div class="skill-name"><span lang="es">Proactividad</span><span lang="en">Proactivity</span></div><div class="skill-lvl"><span lang="es">Avanzado</span><span lang="en">Advanced</span></div></div>
         </div>
       </div>
     </div>
@@ -411,7 +456,7 @@ footer b{color:var(--mid);}
   <!-- ============ TOOLKIT ============ -->
   <section id="toolkit" class="alt">
     <div class="wrap">
-      <p class="sec-lbl rv"><span lang="es">Stack</span><span lang="en">Stack</span></p>
+      <p class="lbl rv"><span class="badge">03</span><span class="txt"><span lang="es">Stack</span><span lang="en">Stack</span></span></p>
       <h2 class="h-title rv"><span lang="es">Herramientas &amp; Plataformas</span><span lang="en">Tools &amp; Platforms</span></h2>
       <div class="tag-grid rv">
         <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M9 21V13H7v-3h2V8a3 3 0 0 1 3-3h2v3h-2a1 1 0 0 0-1 1v2h3l-.5 3H13v8"/></svg>Meta Business Suite</span>
@@ -423,13 +468,20 @@ footer b{color:var(--mid);}
         <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4V8h4v1.5A5 5 0 0 1 16 8z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</span>
         <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16M20 4L4 20"/></svg>X (Twitter)</span>
       </div>
-      <p class="sec-lbl rv" style="margin-top:1rem;"><span lang="es">Marcas con las que trabajé</span><span lang="en">Brands I've worked with</span></p>
-      <div class="tag-grid rv">
-        <span class="tag brand-tag">@laserenisima</span>
-        <span class="tag brand-tag">@somos.almadre</span>
-        <span class="tag brand-tag">@westgoat.mdf</span>
-        <span class="tag brand-tag">CUBA</span>
-        <span class="tag brand-tag">Craverolanis</span>
+      <p class="lbl rv" style="margin-bottom:1.2rem;"><span class="badge" style="background:var(--a2g);color:var(--a2);">✺</span><span class="txt"><span lang="es">Marcas con las que trabajé</span><span lang="en">Brands I've worked with</span></span></p>
+      <div class="tape" style="margin-top:0;">
+        <div class="tape-track">
+          <span class="htag"><i>@</i>laserenisima</span>
+          <span class="htag"><i>@</i>somos.almadre</span>
+          <span class="htag"><i>@</i>westgoat.mdf</span>
+          <span class="htag">CUBA</span>
+          <span class="htag">Craverolanis</span>
+          <span class="htag"><i>@</i>laserenisima</span>
+          <span class="htag"><i>@</i>somos.almadre</span>
+          <span class="htag"><i>@</i>westgoat.mdf</span>
+          <span class="htag">CUBA</span>
+          <span class="htag">Craverolanis</span>
+        </div>
       </div>
     </div>
   </section>
@@ -437,40 +489,71 @@ footer b{color:var(--mid);}
   <!-- ============ EXPERIENCE ============ -->
   <section id="experience">
     <div class="wrap">
-      <p class="sec-lbl rv"><span lang="es">Trayectoria</span><span lang="en">Track record</span></p>
+      <p class="lbl rv"><span class="badge">04</span><span class="txt"><span lang="es">Trayectoria</span><span lang="en">Track record</span></span></p>
       <h2 class="h-title rv"><span lang="es">Experiencia laboral</span><span lang="en">Work Experience</span></h2>
+      <p class="h-sub rv"><span lang="es">Tocá cada rol para ver el detalle.</span><span lang="en">Tap each role to see the details.</span></p>
 
-      <div class="co-block rv">
-        <div class="co-name">Craverolanis</div>
-        <div class="co-meta mono"><span lang="es">Social Media &amp; Community Management · 4 años · 2022 — 2026</span><span lang="en">Social Media &amp; Community Management · 4 years · 2022 — 2026</span></div>
-        <div class="co-roles">
-          <div class="co-role rv">
-            <div class="co-rper mono"><span lang="es">Ene 2025 — Mar 2026</span><span lang="en">Jan 2025 — Mar 2026</span></div>
-            <div class="co-rtitle">Social Media Manager</div>
-            <div class="co-rdesc">
+      <div class="acc rv">
+        <div class="acc-item open">
+          <div class="acc-head">
+            <div class="acc-left">
+              <span class="acc-idx">01</span>
+              <div>
+                <div class="acc-role">Social Media Manager</div>
+                <div class="acc-co">Craverolanis</div>
+              </div>
+            </div>
+            <div class="acc-right">
+              <span class="acc-date"><span lang="es">Ene 2025 — Mar 2026</span><span lang="en">Jan 2025 — Mar 2026</span></span>
+              <span class="acc-plus"></span>
+            </div>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-in">
               <span lang="es">Gestioné la comunicación con múltiples clientes, relevando y traduciendo sus necesidades en solicitudes claras de contenido. Coordiné con distintas áreas del equipo el desarrollo de ideas creativas y estrategias de comunicación integradas, supervisando la ejecución para mejorar la presencia digital de cada cliente.</span>
               <span lang="en">Managed communication with multiple clients, translating their needs into clear content requests. Coordinated with different teams on creative ideas and integrated communication strategies, overseeing execution to strengthen each client's digital presence.</span>
             </div>
           </div>
-          <div class="co-role rv">
-            <div class="co-rper mono"><span lang="es">May 2022 — Ene 2025</span><span lang="en">May 2022 — Jan 2025</span></div>
-            <div class="co-rtitle">Community Manager (CM)</div>
-            <div class="co-rdesc">
+        </div>
+
+        <div class="acc-item">
+          <div class="acc-head">
+            <div class="acc-left">
+              <span class="acc-idx">02</span>
+              <div>
+                <div class="acc-role">Community Manager (CM)</div>
+                <div class="acc-co">Craverolanis</div>
+              </div>
+            </div>
+            <div class="acc-right">
+              <span class="acc-date"><span lang="es">May 2022 — Ene 2025</span><span lang="en">May 2022 — Jan 2025</span></span>
+              <span class="acc-plus"></span>
+            </div>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-in">
               <span lang="es">Gestioné redes sociales para marcas reconocidas como <strong>@laserenisima</strong> y <strong>@somos.almadre</strong>. Publiqué y programé contenido en Instagram, Facebook, LinkedIn y X alineado a la estrategia de cada marca, analizando tendencias y elaborando informes mensuales de resultados.</span>
               <span lang="en">Managed social media for recognized brands such as <strong>@laserenisima</strong> and <strong>@somos.almadre</strong>. Published and scheduled content across Instagram, Facebook, LinkedIn and X aligned with each brand's strategy, analyzing trends and producing monthly performance reports.</span>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="co-block rv">
-        <div class="co-name"><span lang="es">Trabajo independiente</span><span lang="en">Independent Work</span></div>
-        <div class="co-meta mono"><span lang="es">Freelance · 2024</span><span lang="en">Freelance · 2024</span></div>
-        <div class="co-roles">
-          <div class="co-role rv">
-            <div class="co-rper mono"><span lang="es">Ene — Dic 2024</span><span lang="en">Jan — Dec 2024</span></div>
-            <div class="co-rtitle"><span lang="es">Modelo &amp; Gestión de contenido</span><span lang="en">Model &amp; Content Management</span></div>
-            <div class="co-rdesc">
+        <div class="acc-item">
+          <div class="acc-head">
+            <div class="acc-left">
+              <span class="acc-idx">03</span>
+              <div>
+                <div class="acc-role"><span lang="es">Modelo &amp; Gestión de contenido</span><span lang="en">Model &amp; Content Management</span></div>
+                <div class="acc-co"><span lang="es">Trabajo independiente</span><span lang="en">Freelance</span></div>
+              </div>
+            </div>
+            <div class="acc-right">
+              <span class="acc-date"><span lang="es">Ene — Dic 2024</span><span lang="en">Jan — Dec 2024</span></span>
+              <span class="acc-plus"></span>
+            </div>
+          </div>
+          <div class="acc-body">
+            <div class="acc-body-in">
               <span lang="es">Participé como modelo en la producción de contenido de redes sociales para <strong>@westgoat.mdf</strong>, marca de indumentaria urbana. Gestioné la cuenta de Instagram del Club Universitario CUBA, creando contenido orientado a fortalecer su comunidad.</span>
               <span lang="en">Worked as a model in social media content production for <strong>@westgoat.mdf</strong>, an urban apparel brand. Managed the Instagram account of Club Universitario CUBA, creating content to strengthen its community.</span>
             </div>
@@ -484,7 +567,7 @@ footer b{color:var(--mid);}
   <section id="education" class="alt">
     <div class="wrap about-grid">
       <div>
-        <p class="sec-lbl rv"><span lang="es">Educación</span><span lang="en">Education</span></p>
+        <p class="lbl rv"><span class="badge">05</span><span class="txt"><span lang="es">Educación</span><span lang="en">Education</span></span></p>
         <div class="edu-row rv">
           <div class="edu-top">
             <div class="edu-school">Universidad Argentina de la Empresa (UADE)</div>
@@ -503,10 +586,10 @@ footer b{color:var(--mid);}
         </div>
       </div>
       <div>
-        <p class="sec-lbl rv"><span lang="es">Idiomas</span><span lang="en">Languages</span></p>
-        <div class="stack-group">
-          <div class="stack-item rv"><div class="si-dot"></div><div class="si-name"><span lang="es">Español</span><span lang="en">Spanish</span></div><div class="si-role mono"><span lang="es">Nativo</span><span lang="en">Native</span></div></div>
-          <div class="stack-item rv"><div class="si-dot"></div><div class="si-name"><span lang="es">Inglés</span><span lang="en">English</span></div><div class="si-role mono">C1</div></div>
+        <p class="lbl rv"><span class="badge">06</span><span class="txt"><span lang="es">Idiomas</span><span lang="en">Languages</span></span></p>
+        <div class="skill-group">
+          <div class="skill-row rv" data-lvl="4"><div class="meter"><i></i><i></i><i></i><i></i></div><div class="skill-name"><span lang="es">Español</span><span lang="en">Spanish</span></div><div class="skill-lvl"><span lang="es">Nativo</span><span lang="en">Native</span></div></div>
+          <div class="skill-row rv" data-lvl="3"><div class="meter"><i></i><i></i><i></i><i></i></div><div class="skill-name"><span lang="es">Inglés</span><span lang="en">English</span></div><div class="skill-lvl">C1</div></div>
         </div>
       </div>
     </div>
@@ -514,14 +597,14 @@ footer b{color:var(--mid);}
 
   <!-- ============ CONTACT ============ -->
   <section id="contact">
-    <div class="ct-orb1"></div><div class="ct-orb2"></div>
+    <div class="spotlight" id="spotlight"></div>
     <div class="ctwrap">
       <p class="ct-eye mono"><span lang="es">Buenos Aires · 2026</span><span lang="en">Buenos Aires · 2026</span></p>
       <h2 class="ct-title"><span lang="es">¿Hablamos?</span><span lang="en">Let's <em>talk</em>.</span></h2>
       <p class="ct-sub"><span lang="es">Disponible para nuevos proyectos y oportunidades en marketing digital y gestión de redes sociales.</span><span lang="en">Available for new projects and opportunities in digital marketing and social media management.</span></p>
       <div class="ct-links">
-        <a class="btn btn-p" href="https://www.linkedin.com/in/felipe-maloneay-2b29b13b7/" target="_blank" rel="noopener"><div class="btnfill"></div><span><span lang="es">Ver LinkedIn</span><span lang="en">View LinkedIn</span></span></a>
-        <a class="btn btn-g" href="#" id="downloadBtnFooter"><div class="btnfill"></div><span><span lang="es">Descargar CV</span><span lang="en">Download CV</span></span></a>
+        <a class="btn btn-p magnetic" href="https://www.linkedin.com/in/felipe-maloneay-2b29b13b7/" target="_blank" rel="noopener"><span lang="es">Ver LinkedIn</span><span lang="en">View LinkedIn</span></a>
+        <a class="btn btn-g magnetic" href="#" id="downloadBtnFooter"><span lang="es">Descargar CV</span><span lang="en">Download CV</span></a>
       </div>
       <div class="ct-info">
         <div class="ci-item">
@@ -565,6 +648,37 @@ footer b{color:var(--mid);}
   document.getElementById('downloadBtnHero').addEventListener('click', function(e){e.preventDefault();triggerDownload();});
   document.getElementById('downloadBtnFooter').addEventListener('click', function(e){e.preventDefault();triggerDownload();});
 
+  /* gate name letter-in */
+  var nameStr = "Felipe Maloneay";
+  var gateName = document.getElementById('gateName');
+  var frag = document.createDocumentFragment();
+  var delay = 0.35;
+  for(var i=0;i<nameStr.length;i++){
+    var ch = nameStr[i];
+    var span = document.createElement('span');
+    span.className = 'ch';
+    span.style.animationDelay = delay.toFixed(2)+'s';
+    if(ch === ' '){ span.innerHTML = '&nbsp;'; }
+    else { span.textContent = ch; }
+    if(i >= 7){ span.style.color = 'var(--a)'; }
+    frag.appendChild(span);
+    delay += 0.028;
+  }
+  gateName.appendChild(frag);
+
+  /* floating background glyphs */
+  var glyphs = ['@','#','♡','↗','✓','#','@','↗'];
+  var fx = document.getElementById('fx');
+  for(var g=0; g<14; g++){
+    var s = document.createElement('span');
+    s.textContent = glyphs[g % glyphs.length];
+    s.style.left = (Math.random()*100)+'%';
+    s.style.fontSize = (14+Math.random()*20)+'px';
+    s.style.animationDuration = (14+Math.random()*14)+'s';
+    s.style.animationDelay = (-Math.random()*20)+'s';
+    fx.appendChild(s);
+  }
+
   var html = document.documentElement;
   var gate = document.getElementById('gate');
   var app = document.getElementById('app');
@@ -585,7 +699,18 @@ footer b{color:var(--mid);}
   }
 
   document.querySelectorAll('.gb').forEach(function(btn){
-    btn.addEventListener('click', function(){ enterSite(btn.getAttribute('data-lang')); });
+    btn.addEventListener('click', function(e){
+      var r = btn.getBoundingClientRect();
+      var rip = document.createElement('span');
+      rip.className = 'g-ripple';
+      var size = Math.max(r.width, r.height) * 1.6;
+      rip.style.width = rip.style.height = size + 'px';
+      rip.style.left = (e.clientX - r.left - size/2) + 'px';
+      rip.style.top = (e.clientY - r.top - size/2) + 'px';
+      btn.appendChild(rip);
+      setTimeout(function(){ rip.remove(); }, 650);
+      enterSite(btn.getAttribute('data-lang'));
+    });
   });
   langToggle.addEventListener('click', function(){ setLang(currentLang() === 'es' ? 'en' : 'es'); });
 
@@ -609,18 +734,85 @@ footer b{color:var(--mid);}
     if(io) return;
     io = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
-        if(entry.isIntersecting){ entry.target.classList.add('on'); io.unobserve(entry.target); }
+        if(entry.isIntersecting){
+          entry.target.classList.add('on');
+          if(entry.target.classList.contains('skill-row')){
+            var lvl = parseInt(entry.target.getAttribute('data-lvl'),10);
+            var bars = entry.target.querySelectorAll('.meter i');
+            bars.forEach(function(bar, idx){ if(idx < lvl) bar.classList.add('fill'); });
+          }
+          io.unobserve(entry.target);
+        }
       });
     }, {threshold:.12});
-    document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+    document.querySelectorAll('.rv, .skill-row').forEach(function(el){ io.observe(el); });
   }
 
-  /* nav scroll shadow + progress */
+  /* nav active section + progress */
+  var sections = ['about','skills','toolkit','experience','education','contact'];
+  var navLinks = document.querySelectorAll('#navLinks a');
+  var secObservers = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var id = entry.target.id;
+        navLinks.forEach(function(a){ a.classList.toggle('cur', a.getAttribute('data-sec') === id); });
+      }
+    });
+  }, {threshold:.5});
+  sections.forEach(function(id){
+    var el = document.getElementById(id);
+    if(el && document.querySelector('[data-sec="'+id+'"]')) secObservers.observe(el);
+  });
+
   window.addEventListener('scroll', function(){
     var h = document.documentElement;
     var scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
     document.getElementById('progress').style.width = scrolled + '%';
   });
+
+  /* accordion */
+  document.querySelectorAll('.acc-head').forEach(function(head){
+    head.addEventListener('click', function(){
+      var item = head.parentElement;
+      var body = item.querySelector('.acc-body');
+      var wasOpen = item.classList.contains('open');
+      item.parentElement.querySelectorAll('.acc-item').forEach(function(i){
+        i.classList.remove('open');
+        i.querySelector('.acc-body').style.maxHeight = null;
+      });
+      if(!wasOpen){
+        item.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    });
+  });
+  setTimeout(function(){
+    var openBody = document.querySelector('.acc-item.open .acc-body');
+    if(openBody) openBody.style.maxHeight = openBody.scrollHeight + 'px';
+  }, 400);
+
+  /* magnetic buttons */
+  if(window.matchMedia('(pointer:fine)').matches){
+    document.querySelectorAll('.magnetic').forEach(function(btn){
+      btn.addEventListener('mousemove', function(e){
+        var r = btn.getBoundingClientRect();
+        var x = e.clientX - r.left - r.width/2;
+        var y = e.clientY - r.top - r.height/2;
+        btn.style.transform = 'translate(' + (x*0.22) + 'px,' + (y*0.32) + 'px)';
+      });
+      btn.addEventListener('mouseleave', function(){ btn.style.transform = ''; });
+    });
+
+    /* contact spotlight follows cursor */
+    var contactSec = document.getElementById('contact');
+    contactSec.addEventListener('mousemove', function(e){
+      var r = contactSec.getBoundingClientRect();
+      var mx = ((e.clientX - r.left) / r.width) * 100;
+      var my = ((e.clientY - r.top) / r.height) * 100;
+      contactSec.style.setProperty('--mx', mx + '%');
+      contactSec.style.setProperty('--my', my + '%');
+    });
+  }
 
   initReveal();
 })();
